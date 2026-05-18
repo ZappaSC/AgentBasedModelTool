@@ -21,6 +21,27 @@ describe("initState", () => {
       expect(agent.y).toBeLessThan(bounds.height);
     }
   });
+
+  it("does not place all agents at the same position", () => {
+    const state = initState({
+      agentCount: 100,
+      bounds: { width: 100, height: 100 },
+    });
+    const first = state.agents[0];
+    const allSame = state.agents.every(
+      (a) => a.x === first?.x && a.y === first?.y,
+    );
+    expect(allSame).toBe(false);
+  });
+
+  it("gives agents non-zero velocity", () => {
+    const state = initState({
+      agentCount: 100,
+      bounds: { width: 100, height: 100 },
+    });
+    const anyMoving = state.agents.some((a) => a.vx !== 0 || a.vy !== 0);
+    expect(anyMoving).toBe(true);
+  });
 });
 
 const interior = (state: Partial<State> = {}): State => ({

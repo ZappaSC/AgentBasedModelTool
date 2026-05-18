@@ -1,4 +1,9 @@
-import { Button } from "@/components/ui/button";
+import { Canvas } from "@/features/visualization/Canvas";
+
+const defaultConfig = {
+  agentCount: 100,
+  bounds: { width: 640, height: 480 },
+};
 
 export default function Home() {
   return (
@@ -7,9 +12,9 @@ export default function Home() {
         AgentBasedModelTool
       </h1>
       <p className="text-sm text-zinc-500">
-        Scaffold is alive. Replace this page with the simulation UI.
+        Scaffold slice #3 — single frame of the placeholder engine.
       </p>
-      <Button>Hello, shadcn</Button>
+      <Canvas config={defaultConfig} />
     </main>
   );
 }

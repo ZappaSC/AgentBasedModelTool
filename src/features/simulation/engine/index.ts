@@ -23,14 +23,18 @@ export type Config = {
   bounds: Bounds;
 };
 
+const MAX_INITIAL_SPEED = 2;
+
 export function initState(config: Config): State {
+  const { bounds } = config;
+  const randomVelocity = () => (Math.random() * 2 - 1) * MAX_INITIAL_SPEED;
   return {
     tick: 0,
     agents: Array.from({ length: config.agentCount }, () => ({
-      x: 0,
-      y: 0,
-      vx: 0,
-      vy: 0,
+      x: Math.random() * bounds.width,
+      y: Math.random() * bounds.height,
+      vx: randomVelocity(),
+      vy: randomVelocity(),
     })),
   };
 }
